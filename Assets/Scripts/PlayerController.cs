@@ -35,7 +35,8 @@ public class PlayerController : MonoBehaviour {
 		facingRight = true;
 		isMoving = false;
 		moveSpeed = 3.0f;
-		jumpForce = 4.0f;
+		jumpForce = 3.0f;
+		isGrounded = false;
 	}
 
 	//Our player movement function
@@ -54,23 +55,24 @@ public class PlayerController : MonoBehaviour {
 
 
 	//Our collision functions
-	void OnCollisionEnter(Collision collision)
+	void OnCollisionEnter2D(Collision2D collision)
 	{
-		if (collision.collider.gameObject.layer == LayerMask.NameToLayer("platform")
-			&& !isGrounded){
+		if (collision.collider.gameObject.layer == LayerMask.NameToLayer("platform")){
 			isGrounded = true;
 		}
 	}
-	void OnCollisionExit(Collision collision)
+	void OnCollisionExit2D(Collision2D collision)
 	{
-		if (collision.collider.gameObject.layer == LayerMask.NameToLayer("platform") 
-			&& isGrounded){
+		if (collision.collider.gameObject.layer == LayerMask.NameToLayer("platform")){
 			isGrounded = false;
 		}
 	}
 
 	// Update is called once per frame
 	void Update () {
+
+		//Check and set the jumping animation
+		anim.SetBool("isJumping", !isGrounded);
 
 		//Checking and responding to key input
 		// Left and Right movement key inputs
