@@ -21,10 +21,6 @@ public class PlayerController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		//Set the key variables
-		left = KeyCode.A;
-		right = KeyCode.D;
-
 		//Set the animator component
 		anim = GetComponent<Animator>();
 
@@ -51,21 +47,6 @@ public class PlayerController : MonoBehaviour {
 	//Our player jump function
 	void playerJump(){
 		myRgbd.velocity = new Vector2 (myRgbd.velocity.x, jumpForce);
-	}
-
-
-	//Our collision functions
-	void OnCollisionEnter2D(Collision2D collision)
-	{
-		if (collision.collider.gameObject.layer == LayerMask.NameToLayer("platform")){
-			isGrounded = true;
-		}
-	}
-	void OnCollisionExit2D(Collision2D collision)
-	{
-		if (collision.collider.gameObject.layer == LayerMask.NameToLayer("platform")){
-			isGrounded = false;
-		}
 	}
 
 	// Update is called once per frame
