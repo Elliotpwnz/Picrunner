@@ -9,15 +9,15 @@ public class feetCollision : MonoBehaviour {
 	}
 
 	//Our collision functions
-	void OnCollisionEnter2D(Collision2D collision)
+	void OnTriggerEnter2D(Collider2D collider)
 	{
-		if (collision.collider.gameObject.layer == LayerMask.NameToLayer("platform")){
+		if (collider.gameObject.layer == LayerMask.NameToLayer("platform")){
 			transform.parent.GetComponent<PlayerController>().isGrounded = true;
 		}
 	}
-	void OnCollisionExit2D(Collision2D collision)
+	void OnTriggerExit2D(Collider2D collider)
 	{
-		if (collision.collider.gameObject.layer == LayerMask.NameToLayer("platform")){
+		if (collider.gameObject.layer == LayerMask.NameToLayer("platform")){
 			transform.parent.GetComponent<PlayerController>().isGrounded = false;
 		}
 	}

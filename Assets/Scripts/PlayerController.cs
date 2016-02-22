@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEditor;
 using System.Collections;
 
 public class PlayerController : MonoBehaviour {
@@ -73,8 +74,11 @@ public class PlayerController : MonoBehaviour {
 		}
 
 		//Jumping key input
-		if (Input.GetKey ("space") && isGrounded) {
+		if (Input.GetKeyDown("space") && isGrounded) {
 			playerJump ();
+		} else if (Input.GetKeyDown ("space") && !isGrounded) {
+			Debug.Log ("Not jumpin!?");
+			EditorApplication.isPaused = true;
 		}
 
 		if (isMoving) {
