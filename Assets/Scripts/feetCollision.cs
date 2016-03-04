@@ -14,6 +14,17 @@ public class feetCollision : MonoBehaviour {
 		if (collider.gameObject.layer == LayerMask.NameToLayer("platform")){
 			transform.parent.GetComponent<PlayerController>().isGrounded = true;
 		}
+		if (collider.gameObject.layer == LayerMask.NameToLayer("spikes")){
+			GameStatus.gameWin = false;
+			DontDestroyOnLoad (GameObject.Find("GameStatus"));
+			Application.LoadLevel ("GameWinLose");
+		}
+		if (collider.gameObject.layer == LayerMask.NameToLayer("flag")){
+			GameStatus.gameWin = true;
+			DontDestroyOnLoad (GameObject.Find("GameStatus"));
+			Application.LoadLevel ("GameWinLose");
+
+		}
 	}
 	void OnTriggerExit2D(Collider2D collider)
 	{
